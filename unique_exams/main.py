@@ -75,7 +75,9 @@ def make_choices(content)->List[int]:
     return choices
 
 def create_new_document(content:dict, choices:List[int], filename:str, original:str):
-    file_path = os.path.join(os.getcwd(), "output", f"{filename}")
+    file_path = filename  # filename is already a full path
+    # Ensure the output directory exists
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
     # we begin by deep copying the original document to move styles across
     original_document = Document(original)
     document = Document()

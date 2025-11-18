@@ -1,15 +1,13 @@
-[tool.poetry]
+[project]
 name = "unique-exams"
 version = "0.1.0"
-description = ""
-authors = ["AJ laptop <talkingtoaj@gmail.com>"]
+description = "A simple program to create randomized exams so each student receives a unique set of questions"
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.11"
-python-docx = "^0.8.11"
-
+requires-python = ">=3.11"
+dependencies = [
+    "python-docx>=1.1.0",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

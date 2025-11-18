@@ -20,7 +20,7 @@ Please read TEMPLATE_DESIGN.md for details on the process of designing template 
 
 ### Installation
 
-Run `poetry install`
+Run `uv sync`
 
 ### Usage
 
@@ -30,7 +30,7 @@ You can Follow the TEMPLATE_DESIGN.md guide to design your own templates. Remove
 
 Modify config.py to reflect the text you want to use for placeholders for the Alternate questions.
 
-Run `python unique_exams/main.py`
+Run `uv run python unique_exams/main.py`
 
 Generated exams will be placed in the `output` folder
 
