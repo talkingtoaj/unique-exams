@@ -24,13 +24,44 @@ Run `uv sync`
 
 ### Usage
 
-Have a look at the sample template files provided in the `input` folder to see the expected format. 
+#### Option 1: Web UI (Recommended)
 
-You can Follow the TEMPLATE_DESIGN.md guide to design your own templates. Remove the sample files and add your own template files to the `input` folder.
+The easiest way to use Unique-Exams is through the web interface:
 
-Modify config.py to reflect the text you want to use for placeholders for the Alternate questions.
+1. Start the web application:
+   ```bash
+   uv run streamlit run app.py
+   ```
 
-Run `uv run python unique_exams/main.py`
+2. Open your browser to the URL shown (typically http://localhost:8501)
+
+3. Upload your template Word document(s) through the web interface
+
+4. Configure the number of exams to generate
+
+5. Click "Generate Exams" and download the results
+
+The web UI provides:
+- Drag-and-drop file upload
+- Real-time progress tracking
+- Instant download of generated exams
+- Hash code verification
+- Template structure visualization
+
+#### Option 2: Command Line
+
+For automated workflows or scripting:
+
+1. Have a look at the sample template files provided in the `input` folder to see the expected format
+
+2. Follow the TEMPLATE_DESIGN.md guide to design your own templates. Remove the sample files and add your own template files to the `input` folder
+
+3. Modify config.py to reflect the text you want to use for placeholders for the Alternate questions
+
+4. Run:
+   ```bash
+   uv run python cli.py
+   ```
 
 Generated exams will be placed in the `output` folder
 
