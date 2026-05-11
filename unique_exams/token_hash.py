@@ -1,5 +1,5 @@
 import random
-from config import SEED
+from .config import SEED
 
 HEX_ENCODING1 = "aeiouAEIOU"
 HEX_ENCODING2 = "bcdghjklmnprstvwxyz"

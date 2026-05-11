@@ -2,8 +2,8 @@ from docx import Document
 import random
 import os
 from typing import List
-from config import ALTERNATIVE_TEXT, END_ALTERNATIVES
-from token_hash import to_hash, from_hash
+from .config import ALTERNATIVE_TEXT, END_ALTERNATIVES
+from .token_hash import to_hash, from_hash
 
 PAGE_BREAK_TOKEN = "\n"
 def load_in_template(filename)->dict:
