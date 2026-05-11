@@ -38,8 +38,8 @@ Upload one or more Word document (.docx) templates. If you upload multiple templ
 (e.g., Student Version and Examiner Version), they must have identical structure.
 
 **Template Requirements:**
-- Use `Question Alternate` or `Alternatif Soru 1` to mark alternative questions
-- Use `END ALTERNATES` or `Alternatif Sonu` to close each alternative section
+- Use `[[UE_ALT]]` in a paragraph before each alternative question
+- Use `[[UE_END]]` in a paragraph after the final alternative in each section
 - See TEMPLATE_DESIGN.md for detailed guidance
 """)
 
@@ -100,7 +100,7 @@ if uploaded_files:
 
                 if not exam_structures[0]:
                     st.error("❌ Error: No alternative sections were detected.")
-                    st.error("Check that your templates use markers like `Question Alternate` / `END ALTERNATES` or `Alternatif Soru 1` / `Alternatif Sonu`.")
+                    st.error("Check that your templates use `[[UE_ALT]]` before each alternative and `[[UE_END]]` after each alternative section.")
                     raise Exception("No alternative sections were detected in the uploaded templates.")
 
                 # Check structure consistency
@@ -202,7 +202,7 @@ if st.session_state.generated_exams:
 st.markdown("---")
 st.markdown("""
 ### 📚 How to Use
-1. **Prepare Templates**: Create Word documents with alternative questions marked using `Question Alternate` / `END ALTERNATES` or `Alternatif Soru 1` / `Alternatif Sonu`
+1. **Prepare Templates**: Create Word documents with alternative questions marked using `[[UE_ALT]]` before each alternative and `[[UE_END]]` after each alternative section
 2. **Upload**: Upload one or more template files (must have identical structure if multiple)
 3. **Configure**: Set the number of unique exams to generate
 4. **Generate**: Click the generate button to create randomized versions

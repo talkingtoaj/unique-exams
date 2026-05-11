@@ -26,6 +26,8 @@ if __name__ == '__main__':
     exam_structures = []
     for loaded_content in loaded_contents:
         exam_structures.append([len(choice['alternatives']) for choice in loaded_content['choices']])
+    if not exam_structures or not exam_structures[0]:
+        raise Exception("No alternative sections were detected. Add [[UE_ALT]] before each alternative and [[UE_END]] after each alternative section.")
     for i in range(len(exam_structures)):
         if exam_structures[i] != exam_structures[0]:
             raise Exception("The structure of the exam versions are not the same. Please check the files")

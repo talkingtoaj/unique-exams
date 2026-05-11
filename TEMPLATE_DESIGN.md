@@ -2,6 +2,31 @@
 
 The template exam is designed to have a set of several standard sections, each with multiple alternative questions of equivalent difficulty on the same general topic. When a unique exam is constructed, all common sections are included and just ONE randomly selected alternative question for each section.
 
+## Marking alternatives in a Word template
+
+Use language-neutral control markers to identify randomized sections. Put `[[UE_ALT]]` in its own paragraph before each alternative question. Put `[[UE_END]]` in its own paragraph after the final alternative in that section.
+
+Example:
+
+```text
+Common instructions shown on every exam
+
+[[UE_ALT]]
+Alternative question 1
+
+[[UE_ALT]]
+Alternative question 2
+
+[[UE_ALT]]
+Alternative question 3
+
+[[UE_END]]
+
+Common text resumes here
+```
+
+The marker paragraphs are structural controls and are not included in the generated exam. Keep the same marker structure in every uploaded template, such as student and examiner versions.
+
 ## Designing a template exam that serves your educational goals
 
 If you are educating for professional competence, the exam should test for competence in scenarios commonly encountered by practicioners. Surveying a group of practicioners is a good way to collect the above information. 
