@@ -1,32 +1,19 @@
 from docx import Document
 import random
 import os
-import re
 from typing import List
-from .config import (
-    ALTERNATIVE_TEXT,
-    ALTERNATIVE_PATTERNS,
-    END_ALTERNATIVES,
-    END_ALTERNATIVE_PATTERNS,
-)
+from .config import ALTERNATIVE_MARKER, END_ALTERNATIVES_MARKER
 from .token_hash import to_hash, from_hash
 
 PAGE_BREAK_TOKEN = "\n"
 
 
-def _matches_marker(text: str, literal_marker: str, regex_markers: List[str]) -> bool:
-    normalized_text = text.casefold()
-    if literal_marker.casefold() in normalized_text:
-        return True
-    return any(re.search(pattern, text, flags=re.IGNORECASE) for pattern in regex_markers)
-
-
 def is_alternative_header(text: str) -> bool:
-    return _matches_marker(text, ALTERNATIVE_TEXT, ALTERNATIVE_PATTERNS)
+    return ALTERNATIVE_MARKER in text
 
 
 def is_end_alternatives(text: str) -> bool:
-    return _matches_marker(text, END_ALTERNATIVES, END_ALTERNATIVE_PATTERNS)
+    return END_ALTERNATIVES_MARKER in text
 
 
 def load_in_template(filename)->dict:

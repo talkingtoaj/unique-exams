@@ -56,7 +56,9 @@ For automated workflows or scripting:
 
 2. Follow the TEMPLATE_DESIGN.md guide to design your own templates. Remove the sample files and add your own template files to the `input` folder
 
-3. Modify config.py to reflect the text you want to use for placeholders for the Alternate questions
+3. Mark each alternative question in your `.docx` files with the language-neutral template markers:
+   - Add `[[UE_ALT]]` in a paragraph before each alternative question
+   - Add `[[UE_END]]` in a paragraph after the final alternative in each section
 
 4. Run:
    ```bash
