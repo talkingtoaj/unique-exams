@@ -1,11 +1,34 @@
 from docx import Document
 import random
 import os
+import re
 from typing import List
-from .config import ALTERNATIVE_TEXT, END_ALTERNATIVES
+from .config import (
+    ALTERNATIVE_TEXT,
+    ALTERNATIVE_PATTERNS,
+    END_ALTERNATIVES,
+    END_ALTERNATIVE_PATTERNS,
+)
 from .token_hash import to_hash, from_hash
 
 PAGE_BREAK_TOKEN = "\n"
+
+
+def _matches_marker(text: str, literal_marker: str, regex_markers: List[str]) -> bool:
+    normalized_text = text.casefold()
+    if literal_marker.casefold() in normalized_text:
+        return True
+    return any(re.search(pattern, text, flags=re.IGNORECASE) for pattern in regex_markers)
+
+
+def is_alternative_header(text: str) -> bool:
+    return _matches_marker(text, ALTERNATIVE_TEXT, ALTERNATIVE_PATTERNS)
+
+
+def is_end_alternatives(text: str) -> bool:
+    return _matches_marker(text, END_ALTERNATIVES, END_ALTERNATIVE_PATTERNS)
+
+
 def load_in_template(filename)->dict:
     """ loads in the content of the file to memory, takes note of the choices and where they begin and end, returns a dict with all the loaded content """
     # Output format of dict `loaded_content`
@@ -25,7 +48,7 @@ def load_in_template(filename)->dict:
     mode = 'common'
     for i, paragraph in enumerate(template_doc.paragraphs):
         print(f"{i}:{mode}:       {paragraph.text[:45]}")
-        if ALTERNATIVE_TEXT.lower() in paragraph.text.lower():
+        if is_alternative_header(paragraph.text):
             if mode == 'common':
                 # If we encounter a choice header while in common mode
                 alternatives = [] # start a new alternatives list
@@ -39,7 +62,7 @@ def load_in_template(filename)->dict:
             alternative_content = [] # we are starting a new alternative
             continue # we don't save the header
         if mode == 'choice':
-            if END_ALTERNATIVES.lower() in paragraph.text.lower():
+            if is_end_alternatives(paragraph.text):
                 # save current alternative and exit choice mode
                 alternatives.append(alternative_content)
                 # exit choice mode
